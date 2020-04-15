@@ -20,10 +20,10 @@ const Text = styled.p`
 //   background-color: burlywood;
 // `;
 
-const ContactList = ({ user, email, id_contact, handleDeleteContact }) => (
+const ContactList = ({ nome, email, id_contact, RemoverDaLista }) => (
   <ListContainer>
     <div>
-      <Text>{user}</Text>
+      <Text>{nome}</Text>
       <Text>{email}</Text>
     </div>
 
@@ -31,7 +31,7 @@ const ContactList = ({ user, email, id_contact, handleDeleteContact }) => (
       <Link data-test="editar" to={`/${id_contact}/edit`}>
         <Button>Editar </Button>
       </Link>
-      <Button data-test="apagar" onClick={handleDeleteContact}>
+      <Button data-test="apagar" onClick={RemoverDaLista}>
         Apagar
       </Button>
     </ButtonsArea>

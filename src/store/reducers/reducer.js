@@ -1,13 +1,12 @@
 const initialState = {
   contacts: JSON.parse(localStorage.getItem("contacts")) || []
 };
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_USER": {
       const newContact = {
         id: Math.floor(Math.random() * 100000),
-        user: action.payload.user,
+        nome: action.payload.nome,
         email: action.payload.email
       };
       const newContacts = [...state.contacts, newContact];

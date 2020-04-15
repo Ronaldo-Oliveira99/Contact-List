@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
     *{
-        box-sizing: border-box
+        box-sizing: border-box;
+        font-family: monospace;
     }
     body{
         margin: 0;

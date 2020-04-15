@@ -14,7 +14,7 @@ function Create() {
     store => store.contacts.find(contact => contact.id === id) || {}
   );
 
-  const [user, setUser] = useState(contact.user || "");
+  const [nome, setNome] = useState(contact.nome || "");
   const [email, setEmail] = useState(contact.email || "");
   const [nouser, setNouser] = useState(false);
   const [noemail, setNoemail] = useState(false);
@@ -25,7 +25,7 @@ function Create() {
 
   const hadleChangeUser = e => {
     setNouser(false);
-    setUser(e.target.value);
+    setNome(e.target.value);
   };
 
   const hadleChangeEmail = e => {
@@ -33,8 +33,8 @@ function Create() {
     setEmail(e.target.value);
   };
 
-  const handleStoreUser = () => {
-    if (!user) {
+  const CriarSalvarContato = () => {
+    if (!nome) {
       setNouser(true);
       return;
     }
@@ -43,14 +43,14 @@ function Create() {
       return;
     }
     if (id) {
-      dispatch({ type: "EDIT_USER", payload: { user, email, id } });
+      dispatch({ type: "EDIT_USER", payload: { nome, email, id } });
     } else {
-      dispatch({ type: "GET_USER", payload: { user, email } });
+      dispatch({ type: "GET_USER", payload: { nome, email } });
     }
     redirectHome();
   };
 
-  if (id && !user) {
+  if (id && !nome) {
     return <Redirect to="/404" />;
   }
 
@@ -60,7 +60,10 @@ function Create() {
         <Text>{id ? "Salvar" : "Criar"} Contato</Text>
         <ButtonsArea>
           <Button onClick={redirectHome}>Voltar</Button>
-          <Button data-test={id ? "salvar" : "criar"} onClick={handleStoreUser}>
+          <Button
+            data-test={id ? "salvar" : "criar"}
+            onClick={CriarSalvarContato}
+          >
             {id ? "Salvar" : "Criar"} Contato
           </Button>
         </ButtonsArea>
@@ -71,13 +74,13 @@ function Create() {
           data-test="nome"
           type="text"
           name="usuario"
-          value={user}
+          value={nome}
           onChange={hadleChangeUser}
         />
         {nouser && <InputErro>Campo não preenchido ou inválido.</InputErro>}
       </FormContent>
       <FormContent>
-        <Label htlmFor="email">Nome</Label>
+        <Label htlmFor="email">Email</Label>
         <Input
           data-test="email"
           type="text"

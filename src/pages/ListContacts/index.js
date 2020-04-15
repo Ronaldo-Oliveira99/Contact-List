@@ -11,7 +11,7 @@ const ListContacts = () => {
   const dispatch = useDispatch();
   const totalContacts = contact.length;
 
-  const handleDeleteContact = contact => {
+  const RemoverDaLista = contact => {
     dispatch({ type: "DELETE_USER", contact });
   };
 
@@ -27,14 +27,13 @@ const ListContacts = () => {
         </Link>
       </CardHeader>
       {totalContacts ? (
-        contact.map(item => (
-          <div>
+        contact.map((item, index) => (
+          <div key={index}>
             <ContactList
-              key={contact.id}
-              user={item.user}
+              nome={item.nome}
               email={item.email}
               id_contact={item.id}
-              handleDeleteContact={() => handleDeleteContact(item)}
+              RemoverDaLista={() => RemoverDaLista(item)}
             />
           </div>
         ))
